@@ -1,62 +1,56 @@
 {
-  "name": "pi-autoresearch",
-  "version": "1.6.0",
+  "name": "agentplugins-autoresearch",
+  "version": "0.1.0",
   "type": "module",
-  "description": "Autonomous experiment loop for pi — run, measure, keep or discard. Inspired by karpathy/autoresearch.",
+  "description": "Autonomous experiment loop for agentplugins — run, measure, keep or discard. Agentplugins port of pi-autoresearch.",
   "keywords": [
-    "pi-package",
-    "pi",
-    "pi-extension",
+    "agentplugins",
     "autoresearch",
     "experiment",
     "optimization",
     "benchmark",
-    "coding-agent"
+    "mcp"
   ],
   "license": "MIT",
   "author": "David Cortés <477473+davebcn87@users.noreply.github.com>",
-  "homepage": "https://github.com/davebcn87/pi-autoresearch#readme",
+  "homepage": "https://github.com/davebcn87/agentplugins-autoresearch#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davebcn87/pi-autoresearch.git"
+    "url": "git+https://github.com/davebcn87/agentplugins-autoresearch.git"
   },
   "bugs": {
-    "url": "https://github.com/davebcn87/pi-autoresearch/issues"
+    "url": "https://github.com/davebcn87/agentplugins-autoresearch/issues"
   },
   "engines": {
     "node": ">=22"
   },
   "packageManager": "pnpm@10.28.2",
-  "pi": {
-    "extensions": [
-      "./extensions"
-    ],
-    "skills": [
-      "./skills"
-    ]
-  },
   "files": [
-    "extensions",
+    "dist",
+    "src",
     "skills",
     "assets",
+    "agentplugins.config.ts",
+    "tsconfig.json",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
     "package.json"
   ],
   "scripts": {
-    "test": "node --experimental-strip-types --test tests/*.test.mjs"
+    "build:ts": "tsc -p tsconfig.json",
+    "build": "pnpm run build:ts && agentplugins build",
+    "validate": "agentplugins validate",
+    "lint": "agentplugins lint",
+    "test": "node --test tests/*.test.mjs"
   },
-  "peerDependencies": {
-    "@earendil-works/pi-ai": "*",
-    "@earendil-works/pi-coding-agent": "*",
-    "@earendil-works/pi-tui": "*",
-    "@sinclair/typebox": "*"
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
   },
   "devDependencies": {
-    "@earendil-works/pi-ai": "^0.74.0",
-    "@earendil-works/pi-coding-agent": "^0.74.0",
-    "@earendil-works/pi-tui": "^0.74.0",
-    "@sinclair/typebox": "^0.34.41"
+    "@agentplugins/cli": "*",
+    "@agentplugins/core": "*",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
   }
 }
