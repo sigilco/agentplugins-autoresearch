@@ -7,3 +7,5 @@ nano-banana-*.png
 
 dist/
 pnpm-workspace.yaml
+.agents/plans/
+.agents/notes/
