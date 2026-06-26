@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 
 - Autoresearch now stores session files under the `.auto/` subfolder by default, with legacy file fallback for existing sessions.
 - The dashboard widget is now always expanded — the full results table renders inline above the editor at all times. Removed the collapsed one-liner mode and the `Ctrl+Shift+T` expand/collapse toggle (and its `shortcuts.toggleDashboard` config key). Fullscreen (`Ctrl+Shift+F`) remains the only dashboard toggle.
-- Migrated Pi package imports and dependencies from the `@mariozechner` npm scope to `@earendil-works`.
+- Migrated package imports and dependencies from the `@earendil-works` npm scope.
 
 ## [1.5.0] - 2026-06-04
 
@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Configurable dashboard keyboard shortcuts. Users can now override or disable the toggle and fullscreen shortcuts with a profile-aware `<agent-dir>/extensions/pi-autoresearch.json` config file, helping autoresearch coexist with other pi extensions that bind the same keys.
+- Configurable dashboard keyboard shortcuts. Users can now override or disable the toggle and fullscreen shortcuts with a profile-aware `<agent-dir>/extensions/agentplugins-autoresearch.json` config file, helping autoresearch coexist with other agentplugins extensions that bind the same keys.
 - Shortcut resolution tests covering defaults, overrides, disabled shortcuts, partial configs, malformed configs, and extension registration.
 
 ### Changed
@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Deterministic compaction summary. When pi compacts context, autoresearch now bypasses the LLM summarization and injects a lossless markdown summary built from persisted state (experiment rules, ideas backlog, and last 50 runs with ASI fields). This eliminates information loss across compaction boundaries.
+- Deterministic compaction summary. When the agent compacts context, autoresearch now bypasses the LLM summarization and injects a lossless markdown summary built from persisted state (experiment rules, ideas backlog, and last 50 runs with ASI fields). This eliminates information loss across compaction boundaries.
 - Recent-run deltas in the compaction summary use the full segment baseline, not just the first visible run in the window — percentages stay accurate even for long sessions.
 - New test coverage for compaction summary assembly, empty state, re-init segments, 50-run cap, and hidden-baseline delta correctness.
 
@@ -45,7 +45,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Long-running loops now ride pi's auto-compaction instead of stopping. When pi summarizes older messages on context overflow, autoresearch detects the resulting idle and re-prompts the agent to re-read `autoresearch.md`, the tail of `autoresearch.jsonl`, `autoresearch.ideas.md`, and `git log` before continuing.
+- Long-running loops now ride the agent's auto-compaction instead of stopping. When the agent summarizes older messages on context overflow, autoresearch detects the resulting idle and re-prompts the agent to re-read `autoresearch.md`, the tail of `autoresearch.jsonl`, `autoresearch.ideas.md`, and `git log` before continuing.
 
 ### Fixed
 
@@ -55,7 +55,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Removed the next-iteration token-cost prediction and its `isContextExhausted` guard — pi's auto-compaction handles overflow, so autoresearch no longer needs to estimate or stop early.
+- Removed the next-iteration token-cost prediction and its `isContextExhausted` guard — the agent's auto-compaction handles overflow, so autoresearch no longer needs to estimate or stop early.
 - Removed the `iterationTokens` field from `ExperimentResult` and `autoresearch.jsonl`. Existing log files remain readable; the field is simply ignored. The `token-budget.sh` hook example, which relied on it, has been dropped.
 - Removed the never-shipped `autoCompactResume` config option (it was opt-in for an earlier draft of this change).
 
@@ -63,7 +63,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Published to the npm registry. Install with `pi install npm:pi-autoresearch`.
+- Published to the npm registry.
 - Releases now publish automatically from GitHub Actions via npm trusted publisher (OIDC) with provenance attestation.
 
 ## [1.1.0] - 2026-04-24
@@ -78,10 +78,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Updated the default dashboard shortcuts to `Ctrl+Shift+T` (toggle) and `Ctrl+Shift+F` (fullscreen).
-- Avoided the shortcut conflict with Pi's built-in `Ctrl+X` binding introduced in newer Pi releases.
 
 ## [1.0.0] - 2026-04-20
 
 ### Added
 
-- Initial stable release of `pi-autoresearch`.
+- Initial stable release of `agentplugins-autoresearch`.

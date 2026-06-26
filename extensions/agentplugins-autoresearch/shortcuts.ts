@@ -4,7 +4,7 @@ import { getAgentDir } from "@earendil-works/pi-coding-agent";
 
 export const DEFAULT_FULLSCREEN_DASHBOARD_SHORTCUT = "ctrl+shift+f";
 
-const CONFIG_FILE_NAME = "pi-autoresearch.json";
+const CONFIG_FILE_NAME = "agentplugins-autoresearch.json";
 
 export interface AutoresearchShortcuts {
   fullscreenDashboard: string | null;
@@ -89,6 +89,6 @@ function defaultAutoresearchShortcuts(): AutoresearchShortcuts {
 
 function warnUsingDefaults(reason: "Could not read" | "Invalid", configPath: string): void {
   console.warn(
-    `${reason} pi-autoresearch config at ${configPath}; using default shortcuts.`
+    `${reason} agentplugins-autoresearch config at ${configPath}; using default shortcuts.`
   );
 }

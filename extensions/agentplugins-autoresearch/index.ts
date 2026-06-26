@@ -2688,7 +2688,7 @@ export default function autoresearchExtension(pi: ExtensionAPI) {
     const sessionName = extractAutoresearchSessionName(jsonlContent);
     const html = injectDataIntoTemplate(readTemplate(), sessionName)
       .replace(LOGO_PLACEHOLDER, logoDataUrl());
-    const exportDir = fs.mkdtempSync(path.join(tmpdir(), "pi-autoresearch-dashboard-"));
+    const exportDir = fs.mkdtempSync(path.join(tmpdir(), "agentplugins-autoresearch-dashboard-"));
     const dest = path.join(exportDir, "index.html");
     fs.writeFileSync(dest, html);
     return dest;

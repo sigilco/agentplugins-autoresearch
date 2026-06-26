@@ -2,7 +2,8 @@
   "name": "agentplugins-autoresearch",
   "version": "0.1.0",
   "type": "module",
-  "description": "Autonomous experiment loop for agentplugins — run, measure, keep or discard. Agentplugins port of pi-autoresearch.",
+  "private": true,
+  "description": "Autonomous experiment loop for agentplugins — run, measure, keep or discard.",
   "keywords": [
     "agentplugins",
     "autoresearch",
@@ -12,14 +13,14 @@
     "mcp"
   ],
   "license": "MIT",
-  "author": "David Cortés <477473+davebcn87@users.noreply.github.com>",
-  "homepage": "https://github.com/davebcn87/agentplugins-autoresearch#readme",
+  "author": "Quino Terrasa <josocjoq+dev@pm.me>",
+  "homepage": "https://github.com/sigilco/agentplugins-autoresearch#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davebcn87/agentplugins-autoresearch.git"
+    "url": "git+https://github.com/sigilco/agentplugins-autoresearch.git"
   },
   "bugs": {
-    "url": "https://github.com/davebcn87/agentplugins-autoresearch/issues"
+    "url": "https://github.com/sigilco/agentplugins-autoresearch/issues"
   },
   "engines": {
     "node": ">=22"

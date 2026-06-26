@@ -1,28 +1,28 @@
 <div align="center">
 <img  height="120" alt="result" src="https://github.com/user-attachments/assets/c66cbd02-4491-4833-a63a-142cfd7530c1" />
 
-# pi-autoresearch
-### Autonomous experiment loop for pi
+# agentplugins-autoresearch
+### Autonomous experiment loop for agentplugins
 **[Install](#install)** · **[Usage](#usage)** · **[How it works](#how-it-works)**
 
 </div>
 
 *Try an idea, measure it, keep what works, discard what doesn't, repeat forever.*
 
-An extension for **[pi](https://pi.dev/)** — an AI coding agent that runs in your terminal. pi-autoresearch gives pi the tools and workflow to run autonomous optimization loops: try an idea, benchmark it, keep improvements, revert regressions, repeat.
+An extension for **[agentplugins](https://github.com/sigilco/agentplugins)** — an AI coding agent CLI. agentplugins-autoresearch gives the agent the tools and workflow to run autonomous optimization loops: try an idea, benchmark it, keep improvements, revert regressions, repeat.
 
 Inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch). Works for any optimization target: test speed, bundle size, LLM training, build times, Lighthouse scores.
 
 ---
 
-<img width="1736" height="518" alt="pi-autoresearch" src="https://github.com/user-attachments/assets/5078aa31-3530-406a-85fc-bdeff98679a6" />
+<img width="1736" height="518" alt="agentplugins-autoresearch" src="https://github.com/user-attachments/assets/5078aa31-3530-406a-85fc-bdeff98679a6" />
 
 ---
 
 ## Quick start
 
 ```bash
-pi install npm:pi-autoresearch
+pnpm dlx agentplugins install agentplugins-autoresearch
 ```
 
 ## What's included
@@ -65,9 +65,9 @@ pi install npm:pi-autoresearch
 |--------------|-------------|
 | `Ctrl+Shift+F` | Open fullscreen scrollable dashboard overlay. Navigate with `↑`/`↓`/`j`/`k`, `PageUp`/`PageDown`/`u`/`d`, `g`/`G` for top/bottom, `Escape` or `q` to close. |
 
-To avoid conflicts with other pi extensions, override or disable these shortcuts in
-`<agent-dir>/extensions/pi-autoresearch.json`. `<agent-dir>` is the active pi profile
-config directory (usually `~/.pi/agent`, or `PI_CODING_AGENT_DIR` when set):
+To avoid conflicts with other agentplugins extensions, override or disable these shortcuts in
+`<agent-dir>/extensions/agentplugins-autoresearch.json`. `<agent-dir>` is the active agentplugins profile
+config directory (usually `~/.agentplugins`, or `AGENTPLUGINS_AGENT_DIR` when set):
 
 ```json
 {
@@ -108,18 +108,18 @@ All session files live in a single `.auto/` subfolder at the working-directory r
 ## Install
 
 ```bash
-pi install npm:pi-autoresearch
+pnpm dlx agentplugins install agentplugins-autoresearch
 ```
 
 <details>
 <summary>Manual install</summary>
 
 ```bash
-cp -r extensions/pi-autoresearch ~/.pi/agent/extensions/
-cp -r skills/autoresearch-create ~/.pi/agent/skills/
+cp -r extensions/agentplugins-autoresearch ~/.agentplugins/extensions/
+cp -r skills/autoresearch-create ~/.agentplugins/skills/
 ```
 
-Then `/reload` in pi.
+Then reload in agentplugins.
 
 </details>
 
@@ -203,7 +203,7 @@ A fresh agent with no memory can read these two files and continue exactly where
 
 ## Configuration (optional)
 
-Create `.auto/config.json` in your pi session directory to customize behavior:
+Create `.auto/config.json` in your agentplugins session directory to customize behavior:
 
 ```json
 {
@@ -214,18 +214,18 @@ Create `.auto/config.json` in your pi session directory to customize behavior:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `workingDir` | string | Override the directory for all autoresearch operations — file I/O, command execution, and git. Supports absolute or relative paths (resolved against the pi session cwd). The config file itself always stays under the session cwd. Fails if the directory doesn't exist. |
+| `workingDir` | string | Override the directory for all autoresearch operations — file I/O, command execution, and git. Supports absolute or relative paths (resolved against the agentplugins session cwd). The config file itself always stays under the session cwd. Fails if the directory doesn't exist. |
 | `maxIterations` | number | Maximum experiments before auto-stopping. The agent is told to stop and won't run more experiments until a new segment is initialized. |
 
 ### Long-running loops and context
 
-The loop is designed to run unattended across context limits. When pi's [auto-compaction](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/compaction.md) summarizes the older portion of the conversation, autoresearch detects the resulting idle and re-prompts the agent to re-read `.auto/prompt.md`, the tail of `.auto/log.jsonl`, `.auto/ideas.md`, and `git log` before continuing. All progress is persisted in those files, so the post-summary turn rehydrates from the source of truth instead of relying on whatever survived compaction. No tuning required — if pi's auto-compaction is enabled (the default), this just works.
+The loop is designed to run unattended across context limits. When the agent's auto-compaction summarizes the older portion of the conversation, autoresearch detects the resulting idle and re-prompts the agent to re-read `.auto/prompt.md`, the tail of `.auto/log.jsonl`, `.auto/ideas.md`, and `git log` before continuing. All progress is persisted in those files, so the post-summary turn rehydrates from the source of truth instead of relying on whatever survived compaction. No tuning required — if auto-compaction is enabled (the default), this just works.
 
 ---
 
 ## Confidence scoring
 
-After 3+ experiments in a session, pi-autoresearch computes a **confidence score** — how the best improvement compares to the session's noise floor. This helps distinguish real gains from benchmark jitter, especially on noisy signals like ML training, Lighthouse scores, or flaky benchmarks.
+After 3+ experiments in a session, agentplugins-autoresearch computes a **confidence score** — how the best improvement compares to the session's noise floor. This helps distinguish real gains from benchmark jitter, especially on noisy signals like ML training, Lighthouse scores, or flaky benchmarks.
 
 **How it works:**
 
@@ -323,8 +323,8 @@ Drop executable scripts in `.auto/hooks/` to run code at iteration boundaries. H
 
 ## Prerequisites
 
-1. **Install pi** — follow the instructions at [pi.dev](https://pi.dev/)
-2. **An API key** for your preferred LLM provider (configured in pi)
+1. **Install agentplugins** — build from source or use `pnpm dlx agentplugins`
+2. **An API key** for your preferred LLM provider (configured in agentplugins)
 
 ## Controlling costs
 
